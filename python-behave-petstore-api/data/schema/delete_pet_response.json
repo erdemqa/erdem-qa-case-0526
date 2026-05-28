@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org",
+  "title": "ResponseMessageSchema",
+  "type": "object",
+  "required": [
+    "code",
+    "type",
+    "message"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "code": {
+      "type": "integer",
+      "description": "The HTTP status or application internal code."
+    },
+    "type": {
+      "type": "string",
+      "description": "The classification type of the message response."
+    },
+    "message": {
+      "type": "string",
+      "description": "The response description or dynamic resource identifier."
+    }
+  }
+}

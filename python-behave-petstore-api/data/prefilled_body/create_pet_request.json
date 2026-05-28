@@ -1,0 +1,19 @@
+{
+  "id": 1,
+  "category": {
+    "id": 2,
+    "name": "cat 2"
+  },
+  "name": "tahin",
+  "photoUrls": [
+    "googlephotos.com",
+    "googlephotos2.com"
+  ],
+  "tags": [
+    {
+      "id": 3,
+      "name": "tag 3"
+    }
+  ],
+  "status": "available"
+}
