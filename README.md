@@ -1,0 +1,3 @@
+each project has individual readme files that explains the installation and usage details.
+projects "playwright-ui-automation-careers" and  "playwright-ui-automation-careers-with-ai" are basically the same project however the ai version has over 1000 lines affected hence shown as a split project for better readibility.
+ai assistant is only used for 1st task. for jmeter and python projects no ai is used.
