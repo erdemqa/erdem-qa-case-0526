@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan">
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="searchAutoCompleteService">
+        <intProp name="ThreadGroup.num_threads">1</intProp>
+        <intProp name="ThreadGroup.ramp_time">1</intProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
+          <stringProp name="LoopController.loops">10</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+      </ThreadGroup>
+      <hashTree>
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config">
+          <stringProp name="delimiter">,</stringProp>
+          <stringProp name="fileEncoding">UTF-8</stringProp>
+          <stringProp name="filename">C:/Users/erdem/erdem-git/erdem-qa-case-0526/jmeter-11/jmeter-searchData.csv</stringProp>
+          <boolProp name="ignoreFirstLine">false</boolProp>
+          <boolProp name="quotedData">true</boolProp>
+          <boolProp name="recycle">true</boolProp>
+          <stringProp name="shareMode">shareMode.all</stringProp>
+          <boolProp name="stopThread">false</boolProp>
+          <stringProp name="variableNames"></stringProp>
+        </CSVDataSet>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="searchAutoCompleteService">
+          <stringProp name="HTTPSampler.domain">www.n11.com</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/rest/v1/searchAutoCompleteService</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="q" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                <stringProp name="Argument.value">${searchQuery}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">q</stringProp>
+              </elementProp>
+              <elementProp name="state" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">f</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">state</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="User-Agent" elementType="Header">
+                <stringProp name="Header.name">User-Agent</stringProp>
+                <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:151.0) Gecko/20100101 Firefox/151.0</stringProp>
+              </elementProp>
+              <elementProp name="Accept" elementType="Header">
+                <stringProp name="Header.name">Accept</stringProp>
+                <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+              </elementProp>
+              <elementProp name="Accept-Language" elementType="Header">
+                <stringProp name="Header.name">Accept-Language</stringProp>
+                <stringProp name="Header.value">en-GB,en;q=0.9</stringProp>
+              </elementProp>
+              <elementProp name="Accept-Encoding" elementType="Header">
+                <stringProp name="Header.name">Accept-Encoding</stringProp>
+                <stringProp name="Header.value">gzip, deflate, br, zstd</stringProp>
+              </elementProp>
+              <elementProp name="ADRUM" elementType="Header">
+                <stringProp name="Header.name">ADRUM</stringProp>
+                <stringProp name="Header.value">isAjax:true</stringProp>
+              </elementProp>
+              <elementProp name="Connection" elementType="Header">
+                <stringProp name="Header.name">Connection</stringProp>
+                <stringProp name="Header.value">keep-alive</stringProp>
+              </elementProp>
+              <elementProp name="Referer" elementType="Header">
+                <stringProp name="Header.name">Referer</stringProp>
+                <stringProp name="Header.value">https://www.n11.com/</stringProp>
+              </elementProp>
+              <elementProp name="Cookie" elementType="Header">
+                <stringProp name="Header.name">Cookie</stringProp>
+                <stringProp name="Header.value">c_ver=false; __hapc=a2d0bc62-7056-46be-931e-dc38b72ad4ad; connect.sid=s%3Aln7tfLuTRKPML225UXWIv6cpBhPh2XAg.x43apirpqu59PF%2FOs93JjQfap9NVP7deD62zEywBLjM; clientType=Web; __hausc=eebec47e-7e7d-48c1-9cb5-72bb9e0f9563; _ATHENA_DID=a2d0bc62-7056-46be-931e-dc38b72ad4ad; _wbauid=8874686731779912776; _gcl_au=1.1.388487038.1779912787; _ga=GA1.1.701811317.1779912777; _ga_VNGDWXVDWK=GS2.1.s1780229367$o2$g1$t1780229856$j33$l0$h0; Optimization=DISC12875_ORG,DISC12579_V2; _p2s_uvi=e5e88f4f.443669407702046.1779912790946; cto_bundle=cd2NVV9yMUNmdm42OWNWdyUyRkpDMmtnTFg3VzVwJTJGNDBzYWxKTGdZYUk4OSUyQmx4TmhEUWMlMkI1a1FhQmVwaWdYVDlBTmw2eUVKakwlMkZMVGlLOW5nZXVpeE9oUmdYY0toWlFzREFMMWxSU2xnZ1FiV3NMQkQ2dnRQSm9PY3NybXFpTlIwT2I2JTJCUUdRYkNTQ3Y3aCUyQmNROGNJcTRXTG9JeGclMkY4clhwaEtQVDRyRmlnRjRVeEc4JTNE; _pin_unauth=dWlkPU1UZGhOems0WXpRdE16UXdNQzAwWVRobUxXSTVaVFl0WmpOaFlqYzVNelkzWVRJMQ; __rtbh.uid=%7B%22eventType%22%3A%22uid%22%2C%22id%22%3A%22undefined%22%2C%22expiryDate%22%3A%222027-05-31T12%3A17%3A12.376Z%22%7D; __rtbh.lid=%7B%22eventType%22%3A%22lid%22%2C%22id%22%3A%229RZrRsT7RFO8ILcXQrY9%22%2C%22expiryDate%22%3A%222027-05-31T12%3A17%3A12.376Z%22%7D; _twpid=tw.1779912791811.86355339525982436; _fbp=fb.1.1779912792172.750436198333903940; _tt_enable_cookie=1; _ttp=01KSNH3P44MN9WBCWQG41XNT71_.tt.1; ttcsid_C7ENAUKHG7L4JU6R0HQG=1780229369174::dpp6zB-SI5mIKt1LkQgw.2.1780229833392.1; ttcsid=1780229369174::fzAAVctDWEaMWoP3JeLl.2.1780229833392.0::1.458716.464004::481193.5.532.63::470789.8.0; _hjSessionUser_235782=eyJpZCI6ImZmODYzZjM0LWEzNDYtNTQ0Zi04YzBkLWJmZTA4ZmUxMGU0OSIsImNyZWF0ZWQiOjE3Nzk5MTI3OTIzMjksImV4aXN0aW5nIjp0cnVlfQ==; _ce.s=v~a973cf442543cfdb198ea35ee706fec370656770~vir~returning~lva~1780229369210~vpv~1~as~false~v11ls~93833160-5ce9-11f1-956d-49f53fe58f51~v11.cs~409307~v11.s~93833160-5ce9-11f1-956d-49f53fe58f51~v11.vs~a973cf442543cfdb198ea35ee706fec370656770~v11.sla~1780229369719~v11.wss~1780229369720~v11.ss~1780229369721~lcw~1780229833235; __dn_a=H4sIAAAAAAAACg3KOQ4DMQgAwL9QBwkDPnZ%2Fw2FLW6RKGeXvoZpmvvDADd7osPiFI41R83S8zkx0Wj2MaJsTvCCrGid5DMZJfaAO33hJ25ghyydbqmXVqFp8CgkS5n4wbC1U1oGu1DHGNlU5U3JVfcPdfn8CXQNJjwAAAA%3D%3D; __dn_s=H4sIAAAAAAAACj2N0Y7CIBBF%2F2WexcJAAUnMfgsdaDSRWgvamM3%2B%2B44P%2BDQnN2fu%2FYUKATRJjTjOgqL3wqCxYjJyFGRzNEbPTicPB0isRkxyIovCydEKY6csTlplkUj7yWFMJiZWI4TlebvxD12%2BWDvlJzddWltrGIZ934%2BLUke6lyFuscSfxzlvKReu2T4i39ogKOcl4klbpyRyR4%2B0Mk5ax9EMQR6Aytp3aGkdS4d679Tyl948095rvi489iII%2BPcPQb%2FJjBoBAAA%3D; __dn_v=H4sIAAAAAAAACpVSW2%2FaMBj9K5VfxyVOQkIiTdMmQUFARVu2Dk0TchwnGBLH2A6BVvvvs%2BOoY9rT%2FPLdj89nnzeQghggN3USHLj90BkFfT9ISD%2FyIOmn2BsnoYtSH6WgB7BuNYYp69QcxLAHlDUyL0H846eOc2uREiB%2B%2B9UDxZkaD3Abtr4EsdMDiQHSKQ3omEb53gfqlP4PtYophNWCXC01TkRJpaQVA7ESNdFXCISPlOXrfyq4qpkS3aCiJXmtGNHR%2FWrzwfFix9HpArG8RrlJ6630bumZCEWlBpyn3bMgISgRJmR1UWio6khYh2rczZUTGzYkea4TiQXlqiViByhTJBfIpOwih%2F0pCKOHfZWtvk6fskPli7DyRvdLnKvHNfUWs2x2mcvXwzVJJttacjoNT%2BKynAXrIgj8Sk0buOO7Yrf9XJDtTmqvIS9ftsFkHD2sNxP2feM0PsLYwy%2BeQHw0eVyuyHQeqfp52g4WAi7x4nA5tktz%2Fo0IecNYpsf3DHAH3iAENx%2FsOn9%2FMQzHjutGXhCOw%2Fa7z7yTVHFuy2EUQXcMgxEM9MBZF31tpbZQC6zpYLvXPdrR7vXVtbunFU9CsdUXVa3FXHMCgmS1JLqZtWFKMlQXynwdv2EXevoYdlVqh7PKQOZ%2FWoIQulAzw7ZeUqN3M8HPrXy1Tna1KPQVe6W4jIfDpmkGDMIBrsohEqhEn04fiUhJaaRq2hVVhRHHxCTv%2Bndds1kIW%2FjfmoHOTqoDAAA%3D; __cf_bm=dR5OOV.A5q.YuloCxMTrJjXBXmVaGG2OQAE2KLL7Yso-1780229364.364407-1.0.1.1-pHm85j8pdaRjNyBsY1CFyK02lmiXvf_94mIC.Gyjr7B38kS4gI9LcQKg2quroQQC4YXioL.TFp5Rb5UES6RR6Lnl9_0AFofHBmXo8mU_CyaJIX9NG0o9FLjb7UFDkGzp; _cfuvid=wnRRHBSVtPOwWix.raatEqSnis71_S43H6WLkhOG8eY-1780229364.364407-1.0.1.1-VFRNgVsjlT8xJrHv03Kwc5UQb0UPrdYOqbpX.zfpSfw; citrix_ns_id=AAE79iQcajsYxMwCAAAAADta2UAs0IoTFqmDO96uA3JwP5XOicsxwRYWqu6RStfjOw==9Sccag==4Doylb1-0YrW2ElGNINGG61tQBM=; _ATHENA_SID=129ca8ae-2c3a-431c-b890-e8e93173fb57; _ATHENA_SID_TIMEOUT=1780231657355; 39667dd8108757fc657221e4a78cecef=b6d1201cb6c0621c9fe30f7139260d1c; _hjSession_235782=eyJpZCI6IjM3ZjRhZDYxLWQzMWQtNGZkOC1hMzJlLWYyY2RmNzE0M2ZlNiIsImMiOjE3ODAyMjkzNjkxMDQsInMiOjAsInIiOjAsInNiIjowLCJzciI6MCwic2UiOjAsImZzIjowLCJzcCI6MX0=; cebs=1; _ce.clock_data=88%2C212.253.213.159%2C1%2Cdab06743b6d270d4b5389db7e00741fc%2CFirefox%2CTR; cebsp_=3; ADRUM=s~1780229827904&amp;r~aHR0cHMlM0ElMkYlMkZ3d3cubjExLmNvbSUyRmFyYW1hJTNGaGFzaCUzRDE0NzQ3MTg5MDA=</stringProp>
+              </elementProp>
+              <elementProp name="Sec-Fetch-Dest" elementType="Header">
+                <stringProp name="Header.name">Sec-Fetch-Dest</stringProp>
+                <stringProp name="Header.value">empty</stringProp>
+              </elementProp>
+              <elementProp name="Sec-Fetch-Mode" elementType="Header">
+                <stringProp name="Header.name">Sec-Fetch-Mode</stringProp>
+                <stringProp name="Header.value">cors</stringProp>
+              </elementProp>
+              <elementProp name="Sec-Fetch-Site" elementType="Header">
+                <stringProp name="Header.name">Sec-Fetch-Site</stringProp>
+                <stringProp name="Header.value">same-origin</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="arama">
+        <intProp name="ThreadGroup.num_threads">1</intProp>
+        <intProp name="ThreadGroup.ramp_time">1</intProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
+          <stringProp name="LoopController.loops">10</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+      </ThreadGroup>
+      <hashTree>
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config">
+          <stringProp name="delimiter">,</stringProp>
+          <stringProp name="fileEncoding">UTF-8</stringProp>
+          <stringProp name="filename">C:/Users/erdem/erdem-git/erdem-qa-case-0526/jmeter-11/jmeter-searchData.csv</stringProp>
+          <boolProp name="ignoreFirstLine">false</boolProp>
+          <boolProp name="quotedData">true</boolProp>
+          <boolProp name="recycle">true</boolProp>
+          <stringProp name="shareMode">shareMode.all</stringProp>
+          <boolProp name="stopThread">false</boolProp>
+          <stringProp name="variableNames"></stringProp>
+        </CSVDataSet>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="arama-doc">
+          <stringProp name="HTTPSampler.domain">www.n11.com</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/arama</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="q" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                <stringProp name="Argument.value">${searchQuery}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">q</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="Accept" elementType="Header">
+                <stringProp name="Header.name">Accept</stringProp>
+                <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7</stringProp>
+              </elementProp>
+              <elementProp name="Accept-Encoding" elementType="Header">
+                <stringProp name="Header.name">Accept-Encoding</stringProp>
+                <stringProp name="Header.value">gzip, deflate, br, zstd</stringProp>
+              </elementProp>
+              <elementProp name="Accept-Language" elementType="Header">
+                <stringProp name="Header.name">Accept-Language</stringProp>
+                <stringProp name="Header.value">tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7</stringProp>
+              </elementProp>
+              <elementProp name="Connection" elementType="Header">
+                <stringProp name="Header.name">Connection</stringProp>
+                <stringProp name="Header.value">keep-alive</stringProp>
+              </elementProp>
+              <elementProp name="Cookie" elementType="Header">
+                <stringProp name="Header.name">Cookie</stringProp>
+                <stringProp name="Header.value">c_ver=false; __hapc=a4f121b6-9aa5-4dd0-ac4b-730f7df0d496; clientType=Web; __hausc=9f739ee9-a540-4c01-ae69-19e38dce3282; _ATHENA_DID=a4f121b6-9aa5-4dd0-ac4b-730f7df0d496; _wbauid=2071679461779913019; __dn_a=H4sIAAAAAAAAChXKMQ4DIQwEwL9sjSXMLRzmN4CxdEWqlFH%2BHmXq%2BeDBwOxcjXHJCR7huVxMD6UylmXt%2B8yMBP9XhhZdTWzOKnTPMjeX3FeO2yM7rSFhYwAJbwy4qoVVyikMYc%2B3WCuUbd4Po2quBQkvDP3%2BAMHuKQiPAAAA; __dn_s=H4sIAAAAAAAACj3N24rDIBSF4XdZ19q4rcYDDH0W64EO1DSNdkIp8%2B7DXJi7j58F64MGj0TkitOKZ6kKV1YY7mapeHTJZlU0CS3BkOAh3FVpaYgXFxNXSVvustH86uYggphLNBYMAX553e8MKd4OtqH8gset97X5adr3%2FbQQneKjTmELNVyeX3lLuYJh%2Bx%2BCoXV4MsY5OouzISEZ8pH0LKUylqHAE0Os6%2FiJSx%2BsA%2B0x1POhNzz6e83fCxh%2BIrz6%2FQPfmp99GgEAAA%3D%3D; __dn_v=H4sIAAAAAAAACpVSW2%2BbMBT%2BK9V5LUkhECiWpmmTkqZqWqVtti6aJmSMIU7AuPYhNK363ycD6jLtaU%2Fn%2Bp3r9wYZEKBB7k28NBzFlE5HQZa5I8qCdBT5bh5luZsFcQgOMCBghcReaRQQzwHshSkqID9%2FOYBFLylqIG%2FvDpQHYTVQvdnpBojrQGoLvTuAQFybaD7yoMnE%2F4xWS6QMb%2FixH01xXQljRC2BoG64A6gp2wtZrP6JsLqRqAcgioq%2F1pIDgavb9bnrE9cFB0oqi4YW1o0aHKDZgWsURsjiOhvOQrUWXFtTNmXpANZ7LoeqVl0fFe%2FNlqePTWqYFgq7QXqAkMgLTa2rX2S3fQ6j%2BG5b57ff5g%2F5rg50VPvTqyUr8H4l%2FJtFvni5Nq%2B7Y5rONo1RYh4965flIlyVYRjUOG%2B9RCVlsvlS8k1ikjJp%2BdPXTTi7jO9W65n8sXbbgDLmsydfUzWd3S9v%2Bfw6xuZx3gFL7S3Zze5l3y2t1HeuzcnEJtt%2FeGAy9scRnDx44v79Yi%2BK4tjzXT%2F24knHCzVQqjychiM3njqABwYkcAANAxI60A5Vh%2BPue%2BRwfDwObTrupIL19BLYSaY0ENA8bwwHB2RnZjynTYn2c%2Bqke%2BAHU98OV2c9OK9tyeJPyqUf%2Bpe2ah%2BvhKW7RahDx15a8KTRJRDYIipDLi7ath1Lzxuzurqgmlb08%2FOnLa0Enh%2FrkjWWrxaEAkvLkIUNnW1s6Gx0Jj3PLsb6Nr8B3Y%2B3N7EDAAA%3D; connect.sid=s%3ANtoOlQa5orbEorv-q3eyo7YyYXW0oo31.gz8wa%2BFx5G0RmSNUUWzfMRdnliWEtfq8cehT3kqUxRE; 39667dd8108757fc657221e4a78cecef=fa9a90615e136b21218f1d68f947d21e; __cf_bm=UuWI0gc.xtPA_qdX1eIyEDlZ4mFnbK_iEG6NZZegwWo-1780232210.3230376-1.0.1.1-epiRyW2SLCbevco7boEGKa81.DwKzRYPxkxPlZ0NRSmigR3hQz8kg7K0Ub3gGnhoasT0zMh9KFa8iIJ.MyhnRpI.rYYtg6474gIVguYhRBCOb03TAHvC0tgKD5jP_xHE; _cfuvid=qhAh6a9hgRyFhQMuwbhaacNQDaIjHPvBMAT6XN_3mMQ-1780232210.3230376-1.0.1.1-4QehfyH2__EFpQ3teYGbeIC.0t7QeYekzY7tT42FDBo; _ATHENA_SID=57f26e90-1f27-4049-9156-2f7ec6877793; citrix_ns_id=AAs7FDAcajt6SM0CAAAAADta2UAs0IoTFqmDOxYip8ZqAuAklJvBsona0pntOsxsOw==UDEcag==0xgBzInjzzj-eT1zpT0YJCOUGHw=; _ATHENA_SID_TIMEOUT=1780234141558; historyKey=%5B%7B%22link%22%3A%22%2Farama%3Fq%3Derde%22%2C%22keyword%22%3A%22erde%22%7D%5D; ADRUM=s~1780232346489&amp;r~aHR0cHMlM0ElMkYlMkZ3d3cubjExLmNvbSUyRg==</stringProp>
+              </elementProp>
+              <elementProp name="Host" elementType="Header">
+                <stringProp name="Header.name">Host</stringProp>
+                <stringProp name="Header.value">www.n11.com</stringProp>
+              </elementProp>
+              <elementProp name="Referer" elementType="Header">
+                <stringProp name="Header.name">Referer</stringProp>
+                <stringProp name="Header.value">https://www.n11.com/</stringProp>
+              </elementProp>
+              <elementProp name="Sec-Fetch-Dest" elementType="Header">
+                <stringProp name="Header.name">Sec-Fetch-Dest</stringProp>
+                <stringProp name="Header.value">document</stringProp>
+              </elementProp>
+              <elementProp name="Sec-Fetch-Mode" elementType="Header">
+                <stringProp name="Header.name">Sec-Fetch-Mode</stringProp>
+                <stringProp name="Header.value">navigate</stringProp>
+              </elementProp>
+              <elementProp name="Sec-Fetch-Site" elementType="Header">
+                <stringProp name="Header.name">Sec-Fetch-Site</stringProp>
+                <stringProp name="Header.value">same-origin</stringProp>
+              </elementProp>
+              <elementProp name="Sec-Fetch-User" elementType="Header">
+                <stringProp name="Header.name">Sec-Fetch-User</stringProp>
+                <stringProp name="Header.value">?1</stringProp>
+              </elementProp>
+              <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
+                <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
+                <stringProp name="Header.value">1</stringProp>
+              </elementProp>
+              <elementProp name="User-Agent" elementType="Header">
+                <stringProp name="Header.name">User-Agent</stringProp>
+                <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <HtmlExtractor guiclass="HtmlExtractorGui" testclass="HtmlExtractor" testname="CSS Selector Extractor">
+            <stringProp name="HtmlExtractor.refname">productName</stringProp>
+            <stringProp name="HtmlExtractor.expr">a.product-item h2.product-item-title</stringProp>
+            <stringProp name="HtmlExtractor.attribute"></stringProp>
+            <stringProp name="HtmlExtractor.default"></stringProp>
+            <boolProp name="HtmlExtractor.default_empty_value">false</boolProp>
+            <stringProp name="HtmlExtractor.match_number">-1</stringProp>
+            <stringProp name="HtmlExtractor.extractor_impl"></stringProp>
+          </HtmlExtractor>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
